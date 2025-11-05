@@ -14,117 +14,73 @@ function App() {
   };
 
   return (
-    <>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-gradient">
-        <div className="container-fluid">
-          <a href="#" className="navbar-brand fw-bold">
-            <span className="brand-icon">🚀</span> ADJ-DEMO
-          </a>
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav ms-auto">
-              <li className="nav-item">
-                <a href="#" className="nav-link active">Home</a>
-              </li>
-              <li className="nav-item">
-                <a href="#" className="nav-link">API Test</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+    <div>
+      <header style={{ backgroundColor: '#333', color: 'white', padding: '20px' }}>
+        <h1>ADJ-DEMO</h1>
+        <nav>
+          <a href="#" style={{ color: 'white', marginRight: '15px' }}>Home</a>
+          <a href="#" style={{ color: 'white' }}>API Test</a>
+        </nav>
+      </header>
 
-      <div className="hero-section">
-        <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-lg-8 text-center">
-              <h1 className="display-4 fw-bold mb-4 animate-fade-in">
-                Bienvenido a ADJ-DEMO
-              </h1>
-              <p className="lead mb-5 text-muted">
-                Proyecto de demostración Full-Stack con React, Spring Boot y MySQL
-              </p>
+      <main style={{ padding: '40px', maxWidth: '800px', margin: '0 auto' }}>
+        <h2>Proyecto Full-Stack</h2>
+        <p>Demostración con React, Spring Boot y MySQL</p>
 
-              <div className="card shadow-lg border-0 api-card">
-                <div className="card-body p-5">
-                  <h3 className="card-title mb-4">
-                    <span className="icon-circle">⚡</span>
-                    Prueba de Conexión API
-                  </h3>
-                  <p className="text-muted mb-4">
-                    Haz clic en el botón para probar la conexión con el backend
-                  </p>
+        <div style={{ border: '1px solid #ddd', padding: '20px', marginTop: '30px' }}>
+          <h3>Prueba de Conexión API</h3>
+          <p>Haz clic para probar la conexión con el backend</p>
 
-                  <button
-                    onClick={handleAPICall}
-                    className="btn btn-primary btn-lg px-5 py-3 mb-4"
-                    disabled={loading}
-                  >
-                    {loading ? (
-                      <>
-                        <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                        Conectando...
-                      </>
-                    ) : (
-                      <>
-                        <span className="me-2">🔌</span>
-                        Llamar a mi API
-                      </>
-                    )}
-                  </button>
+          <button
+            onClick={handleAPICall}
+            style={{
+              backgroundColor: '#007bff',
+              color: 'white',
+              padding: '10px 20px',
+              border: 'none',
+              cursor: 'pointer',
+              fontSize: '16px'
+            }}
+            disabled={loading}
+          >
+            {loading ? 'Conectando...' : 'Llamar a mi API'}
+          </button>
 
-                  {apiResponse && (
-                    <div className="alert alert-success animate-slide-up" role="alert">
-                      <h5 className="alert-heading">
-                        <span className="me-2">✅</span>
-                        Respuesta del Servidor
-                      </h5>
-                      <hr />
-                      <div className="response-box">
-                        <pre className="mb-0">
-                          {JSON.stringify(apiResponse, null, 2)}
-                        </pre>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              <div className="row mt-5 g-4">
-                <div className="col-md-4">
-                  <div className="feature-card">
-                    <div className="feature-icon">⚛️</div>
-                    <h5>React + Vite</h5>
-                    <p className="text-muted small">Frontend moderno y rápido</p>
-                  </div>
-                </div>
-                <div className="col-md-4">
-                  <div className="feature-card">
-                    <div className="feature-icon">🍃</div>
-                    <h5>Spring Boot</h5>
-                    <p className="text-muted small">Backend robusto con Java</p>
-                  </div>
-                </div>
-                <div className="col-md-4">
-                  <div className="feature-card">
-                    <div className="feature-icon">🐬</div>
-                    <h5>MySQL</h5>
-                    <p className="text-muted small">Base de datos confiable</p>
-                  </div>
-                </div>
-              </div>
+          {apiResponse && (
+            <div style={{
+              backgroundColor: '#d4edda',
+              border: '1px solid #c3e6cb',
+              padding: '15px',
+              marginTop: '20px'
+            }}>
+              <h4>Respuesta del Servidor</h4>
+              <pre style={{ backgroundColor: '#f8f9fa', padding: '10px' }}>
+                {JSON.stringify(apiResponse, null, 2)}
+              </pre>
             </div>
-          </div>
+          )}
         </div>
-      </div>
 
-      <footer className="footer mt-5 py-4 bg-dark text-white">
-        <div className="container text-center">
-          <p className="mb-0">
-            Gestión del Proceso de Desarrollo de Software - 2025
-          </p>
+        <div style={{ marginTop: '40px' }}>
+          <h3>Tecnologías</h3>
+          <ul>
+            <li>React + Vite - Frontend</li>
+            <li>Spring Boot - Backend</li>
+            <li>MySQL - Base de datos</li>
+          </ul>
         </div>
+      </main>
+
+      <footer style={{
+        backgroundColor: '#333',
+        color: 'white',
+        padding: '20px',
+        textAlign: 'center',
+        marginTop: '40px'
+      }}>
+        <p>Gestión del Proceso de Desarrollo de Software - 2025</p>
       </footer>
-    </>
+    </div>
   );
 }
 
