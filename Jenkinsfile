@@ -5,8 +5,8 @@
         // Parar los servicios que ya existen o en todo caso hacer caso omiso
         stage('Parando los servicios...') {
             steps {
-                bat '''
-                    docker compose -p adj-demo down || exit /b 0
+                sh '''
+                    docker compose -p adj-demo down || true
                 '''
             }
         }
@@ -14,15 +14,8 @@
         // Eliminar las imágenes creadas por ese proyecto
         stage('Eliminando imágenes anteriores...') {
             steps {
-                bat '''
-                    for /f "tokens=*" %%i in ('docker images --filter "label=com.docker.compose.project=adj-demo" -q') do (
-                        docker rmi -f %%i
-                    )
-                    if errorlevel 1 (
-                        echo No hay imagenes por eliminar
-                    ) else (
-                        echo Imagenes eliminadas correctamente
-                    )
+                sh '''
+                    docker images --filter "label=com.docker.compose.project=adj-demo" -q | xargs -r docker rmi -f || echo "No hay imagenes por eliminar"
                 '''
             }
         }
@@ -37,7 +30,7 @@
         // Construir y levantar los servicios
         stage('Construyendo y desplegando servicios...') {
             steps {
-                bat '''
+                sh '''
                     docker compose up --build -d
                 '''
             }
